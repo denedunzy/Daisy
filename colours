@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag to Change Colour</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #instruction {
+            font-size: 24px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<p id="instruction">Drag your finger up and down :)</p>
+
+<script>
+    // Function to handle touchmove event
+    function handleTouchMove(e) {
+        const currentY = e.touches[0].clientY;
+        const hue = Math.floor((currentY / window.innerHeight) * 360);
+
+        document.body.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
+    }
+
+    // Function to handle touchstart event and hide the instruction
+    function handleTouchStart() {
+        document.getElementById('instruction').style.display = 'none';
+        document.body.removeEventListener('touchstart', handleTouchStart);
+    }
+
+    document.body.addEventListener('touchmove', handleTouchMove);
+    document.body.addEventListener('touchstart', handleTouchStart);
+
+</script>
+
+</body></html>
