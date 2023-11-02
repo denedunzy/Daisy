@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Shapes</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style type="text/css" id="dcoder_stylesheet">
+@keyframes backgroundColorCycle {
+    0%, 100% { background-color: #FFC1C1; } /* Pastel Red */
+    16.66%   { background-color: #FFD7B5; } /* Pastel Orange */
+    33.33%   { background-color: #FFFFB5; } /* Pastel Yellow */
+    50%      { background-color: #C6FFB5; } /* Pastel Green */
+    66.66%   { background-color: #B5DFFF; } /* Pastel Blue */
+    83.33%   { background-color: #D1B5FF; } /* Pastel Purple */
+}
+
+        body {
+            background-color: #f4f4f4;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            animation: backgroundColorCycle 10s infinite;
+            animation-timing-function: linear;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 125px solid transparent;
+            border-right: 125px solid transparent;
+            border-bottom: 217.5px solid black;
+        }
+
+        .circle {
+            width: 250px;
+            height: 250px;
+            background-color: black;
+            border-radius: 50%;
+            display: none;
+        }
+
+        .square {
+            width: 250px;
+            height: 250px;
+            background-color: black;
+            display: none;
+        }
+
+        .text {
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+            font-size: 80px;
+        }
+
+        .triangle-text {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="triangle"></div>
+        <div class="text triangle-text">Triangle</div>
+        
+        <div class="circle" hidden></div>
+        <div class="text circle-text" hidden>Circle</div>
+        
+        <div class="square" hidden></div>
+        <div class="text square-text" hidden>Square</div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script type="text/javascript" id="dcoder_script">
+        document.addEventListener('touchend', function(event) {
+            event.preventDefault();
+            swapShapes();
+        }, false);
+
+        document.addEventListener('click', swapShapes, false);
+
+        function swapShapes() {
+            let triangle = document.querySelector('.triangle');
+            let triangleText = document.querySelector('.triangle-text');
+
+            let circle = document.querySelector('.circle');
+            let circleText = document.querySelector('.circle-text');
+
+            let square = document.querySelector('.square');
+            let squareText = document.querySelector('.square-text');
+
+            if (triangle.style.display !== 'none') {
+                triangle.style.display = 'none';
+                triangleText.style.display = 'none';
+
+                circle.style.display = 'block';
+                circleText.style.display = 'block';
+            } else if (circle.style.display !== 'none') {
+                circle.style.display = 'none';
+                circleText.style.display = 'none';
+
+                square.style.display = 'block';
+                squareText.style.display = 'block';
+            } else {
+                square.style.display = 'none';
+                squareText.style.display = 'none';
+
+                triangle.style.display = 'block';
+                triangleText.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
