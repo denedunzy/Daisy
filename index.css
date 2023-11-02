@@ -1,0 +1,55 @@
+/* styles.css */
+@keyframes backgroundColorCycle {
+    0%, 100% { background-color: #FFC1C1; } /* Pastel Red */
+    16.66%   { background-color: #FFD7B5; } /* Pastel Orange */
+    33.33%   { background-color: #FFFFB5; } /* Pastel Yellow */
+    50%      { background-color: #C6FFB5; } /* Pastel Green */
+    66.66%   { background-color: #B5DFFF; } /* Pastel Blue */
+    83.33%   { background-color: #D1B5FF; } /* Pastel Purple */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: backgroundColorCycle 10s infinite;
+    animation-timing-function: linear; /* Smooth transition between colors */
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    color: black;
+    margin-bottom: 20px;
+}
+
+.button {
+    margin-top: 10px;
+    padding: 10px 15px; /* You might need to adjust padding based on the new font size */
+    font-size: 32px; /* Double the size from 16px to 32px */
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: transparent;
+    color: black; /* Text color for the buttons */
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Individual button colors */
+.button1 { background-color: #FF0000; } /* Red */
+.button2 { background-color: #FFA500; } /* Orange */
+.button3 { background-color: #FFFF00; } /* Yellow */
+.button4 { background-color: #008000; } /* Green */
+.button5 { background-color: #0000FF; } /* Blue */
+.button6 { background-color: #800080; } /* Purple */
+
+.button:hover {
+    background-color: #f8f8f8; /* Light grey for hover state */
+    color: black; /* Ensuring text remains black on hover */
+  }
