@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Colour Names</title> 
+  <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 8em;  /* Default font size */
+            transition: background-color 0.5s;
+            text-align: center;
+            overflow: hidden;
+            background-color: #FF0000;  /* Set initial background color to Red */
+        }
+
+        #colorName.smaller {
+            font-size: 95%; /* 95% of the 8em */
+        }
+    </style> 
+ </head> 
+ <body> 
+  <div id="colorName">
+    Red 
+  </div> 
+  <script>
+    const colors = [
+        { name: "Red", value: "#FF0000" },
+        { name: "Orange", value: "#FF8C00" },
+        { name: "Yellow", value: "#FFFF00" },
+        { name: "Green", value: "#008000" },
+        { name: "Blue", value: "#0000FF" },
+        { name: "Purple", value: "#800080" },
+        { name: "Pink", value: "#FF007F" }
+    ];
+
+    const colorNameElement = document.getElementById('colorName');
+
+    let currentIndex = 0;
+
+    document.body.addEventListener('touchstart', () => {
+        currentIndex = (currentIndex + 1) % colors.length;
+        const currentColor = colors[currentIndex];
+
+        document.body.style.backgroundColor = currentColor.value;
+
+        if (currentColor.name === "Orange") {
+            colorNameElement.classList.add('smaller');
+        } else {
+            colorNameElement.classList.remove('smaller');
+        }
+
+        colorNameElement.textContent = currentColor.name;
+    });
+
+</script> 
+ 
+</body></html>
