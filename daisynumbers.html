@@ -1,119 +1,53 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>The Numbers</title> 
+  <style>
+@keyframes backgroundColorCycle {
+    0%, 100% { background-color: #FFC1C1; } /* Pastel Red */
+    16.66%   { background-color: #FFD7B5; } /* Pastel Orange */
+    33.33%   { background-color: #FFFFB5; } /* Pastel Yellow */
+    50%      { background-color: #C6FFB5; } /* Pastel Green */
+    66.66%   { background-color: #B5DFFF; } /* Pastel Blue */
+    83.33%   { background-color: #D1B5FF; } /* Pastel Purple */
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Counting</title>
-    <style>
-        @keyframes backgroundColorCycle {
-            0%, 100% { background-color: #FFC1C1; } /* Pastel Red */
-            16.66%   { background-color: #FFD7B5; } /* Pastel Orange */
-            33.33%   { background-color: #FFFFB5; } /* Pastel Yellow */
-            50%      { background-color: #C6FFB5; } /* Pastel Green */
-            66.66%   { background-color: #B5DFFF; } /* Pastel Blue */
-            83.33%   { background-color: #D1B5FF; } /* Pastel Purple */
+    body {
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        animation: backgroundColorCycle 10s infinite;
+        animation-timing-function: linear;
+    }
+
+    #display {
+        font-size: 250px;
+        margin-bottom: 20px;
+    }
+  </style> 
+ </head> 
+ <body onclick="nextNumber()">
+  <div id="display">
+    1 
+  </div>
+  <script>
+    let currentNumber = 1;
+
+    function nextNumber() {
+        currentNumber += 1;
+
+        // If we've gone past 10, reset to 1
+        if (currentNumber > 10) {
+            currentNumber = 1;
         }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            justify-content: space-between;
-            font-family: Arial, sans-serif;
-            animation: backgroundColorCycle 10s infinite;
-            animation-timing-function: linear; /* Smooth transition between colors */
-        }
-
-        .circle {
-            width: 150px;
-            height: 150px;
-            background-color: black;
-            border-radius: 50%;
-            margin: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 140px; /* Increased font size */
-            color: white; /* White text */
-        }
-
-        #circle-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .circle-row {
-            display: flex;
-            justify-content: center;
-        }
-    </style>
-</head>
-
-<body>
-    <div id="circle-container">
-        <div class="circle-row" id="row1"></div>
-        <div class="circle-row" id="row2"></div>
-        <div class="circle-row" id="row3"></div>
-    </div>
-    <script>
-        let count = 1; // Initialize count to 1
-        let isTouchDevice = false; // A flag to check if the device supports touch
-
-        function resetCircles() {
-            const rows = document.querySelectorAll('.circle-row');
-            rows.forEach(row => {
-                while (row.firstChild) {
-                    row.removeChild(row.firstChild);
-                }
-            });
-        }
-
-        function addCircle(event) {
-            if (event && event.cancelable) {
-                // Prevent default action, especially important for touchstart event
-                event.preventDefault();
-            }
-
-            if (count > 5) {
-                resetCircles();
-                count = 1;
-            }
-
-            let targetRow;
-            const circle = document.createElement('div');
-            circle.className = 'circle';
-
-            // Add the number to the circle
-            circle.innerText = count;
-
-            if (count <= 2) {
-                targetRow = document.getElementById('row1');
-            } else if (count <= 4) {
-                targetRow = document.getElementById('row2');
-            } else {
-                targetRow = document.getElementById('row3');
-            }
-
-            targetRow.appendChild(circle);
-            count++;
-        }
-
-        // Call addCircle once to initialize the first circle
-        addCircle();
-
-        // Handle touch event
-        document.body.addEventListener('touchstart', function(event) {
-            isTouchDevice = true;
-            addCircle(event);
-        });
-
-        // Handle click event
-        document.body.addEventListener('click', function(event) {
-            if (!isTouchDevice) { // Only proceed if it's not a touch device
-                addCircle(event);
-            }
-        });
-    </script>
+        document.getElementById("display").textContent = currentNumber;
+    }
+  </script>
 </body></html>
